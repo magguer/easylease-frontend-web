@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rentalist - Encuentra tu hogar ideal",
+  title: "EasyLease - Encuentra tu hogar ideal",
   description: "Descubre habitaciones disponibles en las mejores zonas. Renta semanal, flexible y sin complicaciones.",
-  keywords: "alquiler, habitaciones, renta semanal, Melbourne, Sydney, Australia",
+  keywords: "alquiler, habitaciones, renta semanal, Melbourne, Sydney, Australia, easylease",
 };
 
 export default function RootLayout({
