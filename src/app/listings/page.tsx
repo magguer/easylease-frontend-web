@@ -52,19 +52,7 @@ export default async function ListingsPage({ searchParams }: ListingsPageProps) 
                 href="/listings" 
                 className="text-blue-600 font-semibold px-3 py-2 rounded-md text-sm"
               >
-                Listings
-              </Link>
-              <Link 
-                href="/admin/leads" 
-                className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Leads
-              </Link>
-              <Link 
-                href="/admin/partners" 
-                className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Partners
+                Habitaciones
               </Link>
             </nav>
           </div>

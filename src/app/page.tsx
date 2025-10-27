@@ -30,19 +30,7 @@ export default async function Home() {
                 href="/listings" 
                 className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
               >
-                Listings
-              </Link>
-              <Link 
-                href="/admin/leads" 
-                className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Leads
-              </Link>
-              <Link 
-                href="/admin/partners" 
-                className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Partners
+                Habitaciones
               </Link>
             </nav>
           </div>
@@ -136,12 +124,6 @@ export default async function Home() {
             <div className="mt-6 flex justify-center space-x-6">
               <Link href="/listings" className="text-gray-400 hover:text-white">
                 Habitaciones
-              </Link>
-              <Link href="/admin/leads" className="text-gray-400 hover:text-white">
-                Contactos
-              </Link>
-              <Link href="/admin/partners" className="text-gray-400 hover:text-white">
-                Partners
               </Link>
             </div>
             <div className="mt-8 border-t border-gray-700 pt-8">
