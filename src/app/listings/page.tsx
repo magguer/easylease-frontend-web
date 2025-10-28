@@ -37,28 +37,7 @@ export default async function ListingsPage({ searchParams }: ListingsPageProps) 
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center">
-              <Link href="/" className="text-2xl font-bold text-gray-900">
-                🏠 Easylease
-              </Link>
-            </div>
-            <nav className="flex space-x-8">
-              <Link 
-                href="/listings" 
-                className="text-blue-600 font-semibold px-3 py-2 rounded-md text-sm"
-              >
-                Habitaciones
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
-
+    <div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Title */}
         <div className="mb-8">

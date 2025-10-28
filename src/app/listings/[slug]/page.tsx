@@ -27,7 +27,7 @@ interface ListingDetailPageProps {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
             <p className="text-red-800">⚠️ Error al cargar la habitación: {error}</p>
@@ -45,28 +45,7 @@ interface ListingDetailPageProps {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center">
-              <Link href="/" className="text-2xl font-bold text-gray-900">
-                🏠 Easylease
-              </Link>
-            </div>
-            <nav className="flex space-x-8">
-              <Link 
-                href="/listings" 
-                className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                ← Volver a listings
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
-
+    <div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}

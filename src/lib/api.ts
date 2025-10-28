@@ -116,7 +116,7 @@ class ApiClient {
   }
 
   async getListingBySlug(slug: string): Promise<ApiResponse<Listing>> {
-    return this.request<Listing>(`/listings/${slug}`);
+    return this.request<Listing>(`/listings/slug/${slug}`);
   }
 
   async createListing(listing: Partial<Listing>): Promise<ApiResponse<Listing>> {
