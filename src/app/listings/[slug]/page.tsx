@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
+import { ImageGallery } from "@/components/ImageGallery";
 import { apiClient, Listing } from "@/lib/api";
 import { notFound } from "next/navigation";
 
@@ -29,7 +29,7 @@ interface ListingDetailPageProps {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
+          <div className="bg-red-50 rounded-lg p-6 max-w-md mx-auto">
             <p className="text-red-800">⚠️ Error al cargar la habitación: {error}</p>
             <Link href="/listings" className="text-blue-600 hover:text-blue-700 text-sm mt-2 inline-block">
               ← Volver a las habitaciones
@@ -52,27 +52,7 @@ interface ListingDetailPageProps {
           <div className="lg:col-span-2">
             {/* Image Gallery */}
             <div className="mb-8">
-              {listing.images && listing.images.length > 0 ? (
-                <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
-                  <Image
-                    src={listing.images[0]}
-                    alt={listing.title}
-                    width={800}
-                    height={450}
-                    className="w-full h-96 object-cover"
-                  />
-                </div>
-              ) : (
-                <div className="w-full h-96 flex items-center justify-center bg-gray-100 rounded-lg">
-                  <div className="text-gray-400 text-center">
-                    <svg className="mx-auto h-16 w-16 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5a2 2 0 012-2h4a2 2 0 012 2v3H8V5z" />
-                    </svg>
-                    <p>Sin imágenes disponibles</p>
-                  </div>
-                </div>
-              )}
+              <ImageGallery images={listing.images || []} title={listing.title} />
             </div>
 
             {/* Title and Location */}
@@ -91,7 +71,7 @@ interface ListingDetailPageProps {
             </div>
 
             {/* Key Features */}
-            <div className="bg-white rounded-lg p-6 shadow-sm border mb-8">
+            <div className="bg-white rounded-lg p-6 shadow-sm mb-8">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 Características principales
               </h2>
@@ -129,7 +109,7 @@ interface ListingDetailPageProps {
 
             {/* House Features */}
             {listing.house_features && listing.house_features.length > 0 && (
-              <div className="bg-white rounded-lg p-6 shadow-sm border mb-8">
+              <div className="bg-white rounded-lg p-6 shadow-sm mb-8">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">
                   Características de la casa
                 </h2>
@@ -146,7 +126,7 @@ interface ListingDetailPageProps {
 
             {/* Rules */}
             {listing.rules && listing.rules.length > 0 && (
-              <div className="bg-white rounded-lg p-6 shadow-sm border mb-8">
+              <div className="bg-white rounded-lg p-6 shadow-sm mb-8">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">
                   Reglas de la casa
                 </h2>
@@ -163,7 +143,7 @@ interface ListingDetailPageProps {
 
             {/* Preferred Tenants */}
             {listing.preferred_tenants && listing.preferred_tenants.length > 0 && (
-              <div className="bg-white rounded-lg p-6 shadow-sm border">
+              <div className="bg-white rounded-lg p-6 shadow-sm">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">
                   Inquilinos preferidos
                 </h2>
@@ -184,7 +164,7 @@ interface ListingDetailPageProps {
           {/* Sidebar */}
           <div className="lg:col-span-1">
             {/* Price and Contact */}
-            <div className="bg-white rounded-lg p-6 shadow-sm border sticky top-4">
+            <div className="bg-white rounded-lg p-6 shadow-sm sticky top-4">
               <div className="mb-6">
                 <div className="text-3xl font-bold text-gray-900 mb-2">
                   ${listing.price_per_week}
