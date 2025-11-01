@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from "react";
-import { apiClient } from "@/lib/api";
+import { useState } from 'react';
+import { Listing, apiClient } from '@/lib/api';
+import { CheckCircle } from 'lucide-react';
 
 interface ContactFormProps {
   listingId: string;
@@ -50,11 +51,13 @@ export function ContactForm({ listingId, listingTitle }: ContactFormProps) {
   if (isSubmitted) {
     return (
       <div className="text-center p-6">
-        <div className="text-green-600 text-5xl mb-4">✅</div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+        <div className="flex justify-center mb-4">
+          <CheckCircle className="w-16 h-16 text-green-600" />
+        </div>
+        <h3 className="text-lg font-semibold text-neutral-900 mb-2">
           ¡Mensaje enviado!
         </h3>
-        <p className="text-gray-600 mb-4">
+        <p className="text-neutral-600 mb-4">
           Hemos recibido tu consulta. El propietario se pondrá en contacto contigo pronto.
         </p>
         <button
@@ -67,7 +70,7 @@ export function ContactForm({ listingId, listingTitle }: ContactFormProps) {
               message: `Hola, me interesa la habitación "${listingTitle}". ¿Podríamos hablar?`
             });
           }}
-          className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+          className="text-primary-600 hover:text-primary-700 text-sm font-medium"
         >
           Enviar otro mensaje
         </button>
@@ -77,7 +80,7 @@ export function ContactForm({ listingId, listingTitle }: ContactFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+      <h3 className="text-lg font-semibold text-neutral-900 mb-4">
         Contactar propietario
       </h3>
 
@@ -88,7 +91,7 @@ export function ContactForm({ listingId, listingTitle }: ContactFormProps) {
       )}
 
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-1">
           Nombre *
         </label>
         <input
@@ -98,13 +101,13 @@ export function ContactForm({ listingId, listingTitle }: ContactFormProps) {
           required
           value={formData.name}
           onChange={handleInputChange}
-          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           placeholder="Tu nombre completo"
         />
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-1">
           Email *
         </label>
         <input
@@ -114,13 +117,13 @@ export function ContactForm({ listingId, listingTitle }: ContactFormProps) {
           required
           value={formData.email}
           onChange={handleInputChange}
-          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           placeholder="tu@email.com"
         />
       </div>
 
       <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="phone" className="block text-sm font-medium text-neutral-700 mb-1">
           Teléfono
         </label>
         <input
@@ -129,13 +132,13 @@ export function ContactForm({ listingId, listingTitle }: ContactFormProps) {
           name="phone"
           value={formData.phone}
           onChange={handleInputChange}
-          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           placeholder="+34 600 123 456"
         />
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-1">
           Mensaje
         </label>
         <textarea
@@ -144,7 +147,7 @@ export function ContactForm({ listingId, listingTitle }: ContactFormProps) {
           rows={4}
           value={formData.message}
           onChange={handleInputChange}
-          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
           placeholder="Escribe tu mensaje aquí..."
         />
       </div>
@@ -152,12 +155,12 @@ export function ContactForm({ listingId, listingTitle }: ContactFormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-blue-600 text-white py-3 px-4 rounded-md font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="w-full bg-orange-600 text-white py-3 px-4 rounded-md font-medium hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
       >
         {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
       </button>
 
-      <p className="text-xs text-gray-500 text-center">
+      <p className="text-xs text-neutral-500 text-center">
         Al enviar este formulario, aceptas que el propietario se ponga en contacto contigo.
       </p>
     </form>

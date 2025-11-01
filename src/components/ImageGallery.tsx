@@ -44,8 +44,8 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
 
   if (!images || images.length === 0) {
     return (
-      <div className="w-full h-96 flex items-center justify-center bg-gray-100 rounded-lg">
-        <div className="text-gray-400 text-center">
+      <div className="w-full h-96 flex items-center justify-center bg-neutral-100 rounded-lg">
+        <div className="text-neutral-400 text-center">
           <svg className="mx-auto h-16 w-16 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5a2 2 0 012-2h4a2 2 0 012 2v3H8V5z" />
@@ -106,8 +106,8 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
               onClick={() => selectImage(index)}
               className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
                 index === currentIndex
-                  ? 'border-blue-500 ring-2 ring-blue-200'
-                  : 'border-gray-200 hover:border-gray-300'
+                  ? 'border-primary-500 ring-2 ring-primary-200'
+                  : 'border-neutral-200 hover:border-neutral-300'
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -121,7 +121,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
               />
               {index === currentIndex && (
                 <motion.div
-                  className="absolute inset-0 bg-blue-500/20"
+                  className="absolute inset-0 bg-primary-500/20"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
@@ -135,7 +135,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
         {/* Main Image */}
                 {/* Main Image */}
         <div className="flex-1 relative min-h-[400px] md:min-h-[500px]">
-          <div className="w-full h-full rounded-lg bg-gray-100 relative overflow-hidden flex items-center justify-center">
+          <div className="w-full h-full rounded-lg bg-neutral-100 relative overflow-hidden flex items-center justify-center">
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={currentIndex}
@@ -204,7 +204,8 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
         {/* Main Image Container with Navigation */}
         <div className="relative mb-4 w-full">
           {/* Main Image */}
-          <div className="aspect-[16/10] min-h-[280px] sm:min-h-[320px] rounded-lg bg-gray-100 relative overflow-hidden w-full">
+                    {/* Fullscreen Image */}
+          <div className="aspect-[16/10] min-h-[280px] sm:min-h-[320px] rounded-lg bg-neutral-100 relative overflow-hidden w-full">
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={currentIndex}
@@ -277,8 +278,8 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
               onClick={() => selectImage(index)}
               className={`relative flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
                 index === currentIndex
-                  ? 'border-blue-500 ring-2 ring-blue-200'
-                  : 'border-gray-200 hover:border-gray-300'
+                  ? 'border-primary-500 ring-2 ring-primary-200'
+                  : 'border-neutral-200 hover:border-neutral-300'
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -292,7 +293,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
               />
               {index === currentIndex && (
                 <motion.div
-                  className="absolute inset-0 bg-blue-500/20"
+                  className="absolute inset-0 bg-primary-500/20"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}

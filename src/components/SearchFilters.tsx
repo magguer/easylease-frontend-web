@@ -47,15 +47,15 @@ export function SearchFilters() {
   const hasActiveFilters = Object.values(filters).some(value => value !== '');
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm border">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+    <div className="bg-white p-6 rounded-lg shadow-sm border border-neutral-200">
+      <h3 className="text-lg font-semibold text-neutral-900 mb-4">
         Filtrar habitaciones
       </h3>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         {/* Suburb Filter */}
         <div>
-          <label htmlFor="suburb" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="suburb" className="block text-sm font-medium text-neutral-700 mb-1">
             Suburb
           </label>
           <input
@@ -64,20 +64,20 @@ export function SearchFilters() {
             placeholder="ej: Carlton, Fitzroy..."
             value={filters.suburb}
             onChange={(e) => handleFilterChange('suburb', e.target.value)}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
         </div>
 
         {/* Room Type Filter */}
         <div>
-          <label htmlFor="room_type" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="room_type" className="block text-sm font-medium text-neutral-700 mb-1">
             Tipo de habitación
           </label>
           <select
             id="room_type"
             value={filters.room_type}
             onChange={(e) => handleFilterChange('room_type', e.target.value)}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             <option value="">Cualquier tipo</option>
             <option value="single">Individual</option>
@@ -88,7 +88,7 @@ export function SearchFilters() {
 
         {/* Min Price Filter */}
         <div>
-          <label htmlFor="min_price" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="min_price" className="block text-sm font-medium text-neutral-700 mb-1">
             Precio mínimo
           </label>
           <input
@@ -97,13 +97,13 @@ export function SearchFilters() {
             placeholder="$0"
             value={filters.min_price}
             onChange={(e) => handleFilterChange('min_price', e.target.value)}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
         </div>
 
         {/* Max Price Filter */}
         <div>
-          <label htmlFor="max_price" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="max_price" className="block text-sm font-medium text-neutral-700 mb-1">
             Precio máximo
           </label>
           <input
@@ -112,7 +112,7 @@ export function SearchFilters() {
             placeholder="$1000"
             value={filters.max_price}
             onChange={(e) => handleFilterChange('max_price', e.target.value)}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
         </div>
       </div>
@@ -121,7 +121,7 @@ export function SearchFilters() {
       <div className="flex flex-wrap gap-3">
         <button
           onClick={applyFilters}
-          className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors"
+          className="bg-primary-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary-700 transition-colors"
         >
           Aplicar filtros
         </button>
@@ -129,13 +129,13 @@ export function SearchFilters() {
         {hasActiveFilters && (
           <button
             onClick={clearFilters}
-            className="bg-gray-100 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-200 transition-colors"
+            className="bg-neutral-100 text-neutral-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-neutral-200 transition-colors"
           >
             Limpiar filtros
           </button>
         )}
         
-        <div className="flex items-center text-sm text-gray-500">
+        <div className="flex items-center text-sm text-neutral-500">
           {hasActiveFilters && (
             <span>
               Filtros activos: {Object.values(filters).filter(v => v !== '').length}

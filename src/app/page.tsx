@@ -18,20 +18,20 @@ export default async function Home() {
     <div>
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      <div className="bg-gradient-to-r from-primary-600 to-primary-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold sm:text-5xl md:text-6xl">
               Encuentra tu hogar ideal
             </h1>
-            <p className="mt-6 max-w-2xl mx-auto text-xl text-blue-100">
+            <p className="mt-6 max-w-2xl mx-auto text-xl text-primary-100">
               Descubre habitaciones disponibles en las mejores zonas. 
               Renta semanal, flexible y sin complicaciones.
             </p>
             <div className="mt-10">
               <Link
                 href="/listings"
-                className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                className="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-neutral-100 transition-colors"
               >
                 Ver todas las habitaciones
               </Link>
@@ -43,10 +43,10 @@ export default async function Home() {
       {/* Featured Listings */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold text-gray-900">
+          <h2 className="text-3xl font-extrabold text-neutral-900">
             Habitaciones destacadas
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-neutral-600">
             Las mejores opciones disponibles ahora
           </p>
         </div>
@@ -85,7 +85,7 @@ export default async function Home() {
           <div className="text-center mt-12">
             <Link
               href="/listings"
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+              className="bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
             >
               Ver todas las habitaciones ({listings.length})
             </Link>

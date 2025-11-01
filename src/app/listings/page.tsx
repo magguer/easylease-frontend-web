@@ -41,10 +41,10 @@ export default async function ListingsPage({ searchParams }: ListingsPageProps) 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Title */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
+          <h1 className="text-3xl font-bold text-neutral-900">
             Habitaciones Disponibles
           </h1>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2 text-neutral-600">
             Encuentra la habitación perfecta para ti
           </p>
         </div>
@@ -72,7 +72,7 @@ export default async function ListingsPage({ searchParams }: ListingsPageProps) 
           <>
             {/* Results Summary */}
             <div className="flex justify-between items-center mb-6">
-              <p className="text-gray-600">
+              <p className="text-neutral-600">
                 {listings.length === 0 
                   ? "No hay habitaciones que coincidan con tu búsqueda"
                   : `${listings.length} habitación${listings.length !== 1 ? 'es' : ''} encontrada${listings.length !== 1 ? 's' : ''}`
@@ -81,8 +81,8 @@ export default async function ListingsPage({ searchParams }: ListingsPageProps) 
               
               {listings.length > 0 && (
                 <div className="flex items-center space-x-4">
-                  <span className="text-sm text-gray-500">Ordenar por:</span>
-                  <select className="border border-gray-300 rounded-md px-3 py-1 text-sm">
+                  <span className="text-sm text-neutral-500">Ordenar por:</span>
+                  <select className="border border-neutral-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
                     <option value="newest">Más recientes</option>
                     <option value="price_low">Precio: menor a mayor</option>
                     <option value="price_high">Precio: mayor a menor</option>

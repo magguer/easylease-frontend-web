@@ -3,6 +3,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { ImageGallery } from "@/components/ImageGallery";
 import { apiClient, Listing } from "@/lib/api";
 import { notFound } from "next/navigation";
+import { MapPin, DollarSign, Calendar, CheckCircle, XCircle, Crown, Bed, Home, Check, AlertTriangle } from 'lucide-react';
 
 interface ListingDetailPageProps {
   params: Promise<{
@@ -32,7 +33,10 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="bg-red-50 rounded-lg p-6 max-w-md mx-auto">
-            <p className="text-red-800">⚠️ Error al cargar la habitación: {error}</p>
+            <div className="flex items-center">
+              <AlertTriangle className="w-6 h-6 text-red-600 mr-2" />
+              <p className="text-red-800">Error al cargar la habitación: {error}</p>
+            </div>
             <Link href="/listings" className="text-blue-600 hover:text-blue-700 text-sm mt-2 inline-block">
               ← Volver a las habitaciones
             </Link>
@@ -59,50 +63,59 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
 
             {/* Title and Location */}
             <div className="mb-6">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-3xl font-bold text-neutral-900 mb-2">
                 {listing.title}
               </h1>
-              <p className="text-gray-600 flex items-center">
-                📍 {listing.address}
+              <p className="text-neutral-600 flex items-center">
+                <MapPin className="w-5 h-5 mr-2" />
+                {listing.address}
               </p>
               {listing.suburb && (
-                <span className="inline-block bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full mt-2">
+                <span className="inline-block bg-primary-100 text-primary-800 text-sm px-3 py-1 rounded-full mt-2">
                   {listing.suburb}
                 </span>
               )}
             </div>
 
             {/* Key Features */}
-            <div className="bg-white rounded-lg p-6 shadow-sm mb-8">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            <div className="bg-white rounded-lg p-6 shadow-sm mb-8 border border-neutral-200">
+              <h2 className="text-xl font-semibold text-neutral-900 mb-4">
                 Características principales
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <div className="text-2xl mb-1">
+                <div className="text-center p-3 bg-neutral-50 rounded-lg">
+                  <div className="flex justify-center mb-1">
                     {getRoomTypeIcon(listing.room_type)}
                   </div>
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-medium text-neutral-900">
                     {getRoomTypeLabel(listing.room_type)}
                   </p>
                 </div>
-                <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <div className="text-2xl mb-1">💰</div>
-                  <p className="text-sm font-medium text-gray-900">
+                <div className="text-center p-3 bg-neutral-50 rounded-lg">
+                  <div className="flex justify-center mb-1">
+                    <DollarSign className="w-6 h-6 text-green-600" />
+                  </div>
+                  <p className="text-sm font-medium text-neutral-900">
                     ${listing.price_per_week}/sem
                   </p>
                 </div>
-                <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <div className="text-2xl mb-1">
-                    {listing.bills_included ? '✅' : '❌'}
+                <div className="text-center p-3 bg-neutral-50 rounded-lg">
+                  <div className="flex justify-center mb-1">
+                    {listing.bills_included ? (
+                      <CheckCircle className="w-6 h-6 text-green-600" />
+                    ) : (
+                      <XCircle className="w-6 h-6 text-red-600" />
+                    )}
                   </div>
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-medium text-neutral-900">
                     {listing.bills_included ? 'Servicios incluidos' : 'Servicios no incluidos'}
                   </p>
                 </div>
-                <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <div className="text-2xl mb-1">📅</div>
-                  <p className="text-sm font-medium text-gray-900">
+                <div className="text-center p-3 bg-neutral-50 rounded-lg">
+                  <div className="flex justify-center mb-1">
+                    <Calendar className="w-6 h-6 text-primary-600" />
+                  </div>
+                  <p className="text-sm font-medium text-neutral-900">
                     {listing.min_term_weeks} sem. mín.
                   </p>
                 </div>
@@ -111,15 +124,15 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
 
             {/* House Features */}
             {listing.house_features && listing.house_features.length > 0 && (
-              <div className="bg-white rounded-lg p-6 shadow-sm mb-8">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              <div className="bg-white rounded-lg p-6 shadow-sm mb-8 border border-neutral-200">
+                <h2 className="text-xl font-semibold text-neutral-900 mb-4">
                   Características de la casa
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {listing.house_features.map((feature, index) => (
                     <div key={index} className="flex items-center">
-                      <span className="text-green-500 mr-2">✓</span>
-                      <span className="text-gray-700">{feature}</span>
+                      <Check className="w-4 h-4 text-green-600 mr-2" />
+                      <span className="text-neutral-700">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -128,15 +141,15 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
 
             {/* Rules */}
             {listing.rules && listing.rules.length > 0 && (
-              <div className="bg-white rounded-lg p-6 shadow-sm mb-8">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              <div className="bg-white rounded-lg p-6 shadow-sm mb-8 border border-neutral-200">
+                <h2 className="text-xl font-semibold text-neutral-900 mb-4">
                   Reglas de la casa
                 </h2>
                 <div className="space-y-2">
                   {listing.rules.map((rule, index) => (
                     <div key={index} className="flex items-start">
-                      <span className="text-blue-500 mr-2 mt-1">•</span>
-                      <span className="text-gray-700">{rule}</span>
+                      <span className="text-primary-500 mr-2 mt-1">•</span>
+                      <span className="text-neutral-700">{rule}</span>
                     </div>
                   ))}
                 </div>
@@ -145,15 +158,15 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
 
             {/* Preferred Tenants */}
             {listing.preferred_tenants && listing.preferred_tenants.length > 0 && (
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-neutral-200">
+                <h2 className="text-xl font-semibold text-neutral-900 mb-4">
                   Inquilinos preferidos
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {listing.preferred_tenants.map((tenant, index) => (
                     <span 
                       key={index} 
-                      className="inline-block bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full"
+                      className="inline-block bg-primary-100 text-primary-800 text-sm px-3 py-1 rounded-full"
                     >
                       {tenant}
                     </span>
@@ -166,19 +179,19 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
           {/* Sidebar */}
           <div className="lg:col-span-1">
             {/* Price and Contact */}
-            <div className="bg-white rounded-lg p-6 shadow-sm sticky top-4">
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-neutral-200 sticky top-4">
               <div className="mb-6">
-                <div className="text-3xl font-bold text-gray-900 mb-2">
+                <div className="text-3xl font-bold text-neutral-900 mb-2">
                   ${listing.price_per_week}
-                  <span className="text-lg font-normal text-gray-500">/semana</span>
+                  <span className="text-lg font-normal text-neutral-500">/semana</span>
                 </div>
                 {listing.bond > 0 && (
-                  <p className="text-gray-600">
+                  <p className="text-neutral-600">
                     Depósito: ${listing.bond}
                   </p>
                 )}
                 {listing.available_from && (
-                  <p className="text-sm text-gray-500 mt-2">
+                  <p className="text-sm text-neutral-500 mt-2">
                     Disponible desde: {new Date(listing.available_from).toLocaleDateString('es-ES')}
                   </p>
                 )}
@@ -196,13 +209,13 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
 function getRoomTypeIcon(roomType: string) {
   switch (roomType) {
     case 'master':
-      return '👑';
+      return <Crown className="w-6 h-6 text-orange-600" />;
     case 'double':
-      return '🛏️';
+      return <Bed className="w-6 h-6 text-primary-600" />;
     case 'single':
-      return '🛌';
+      return <Bed className="w-6 h-6 text-neutral-600" />;
     default:
-      return '🏠';
+      return <Home className="w-6 h-6 text-neutral-600" />;
   }
 }
 
