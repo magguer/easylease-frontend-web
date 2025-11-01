@@ -8,7 +8,9 @@ interface ListingDetailPageProps {
   params: Promise<{
     slug: string;
   }>;
-}export default async function ListingDetailPage({ params }: ListingDetailPageProps) {
+}
+
+export default async function ListingDetailPage({ params }: ListingDetailPageProps) {
   const resolvedParams = await params;
   let listing: Listing | null = null;
   let error = null;
