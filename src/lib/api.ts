@@ -114,7 +114,7 @@ class ApiClient {
     }
     
     const query = searchParams.toString();
-    return this.request<Listing[]>(`/listings${query ? `?${query}` : ''}`);
+    return this.request<Listing[]>(`/listings/public${query ? `?${query}` : ''}`);
   }
 
   async getListingBySlug(slug: string): Promise<ApiResponse<Listing>> {
