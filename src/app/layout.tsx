@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { LanguageProvider } from "@/lib/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "EasyLease - Encuentra tu hogar ideal",
-  description: "Descubre habitaciones disponibles en las mejores zonas. Renta semanal, flexible y sin complicaciones.",
-  keywords: "alquiler, habitaciones, renta semanal, Melbourne, Sydney, Australia, easylease",
+  title: "EasyLease - Simplify Your Property Management",
+  description: "Modern property management platform for landlords, property managers, and tenants. Manage properties, contracts, and payments all in one place.",
+  keywords: "property management, rental management, landlord software, tenant management, easylease",
 };
 
 export default function RootLayout({
@@ -26,15 +27,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-neutral-50`}
       >
-        <Header />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
