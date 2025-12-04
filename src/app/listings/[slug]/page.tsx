@@ -82,7 +82,7 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
               <h2 className="text-xl font-semibold text-neutral-900 mb-4">
                 Características principales
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <div className="text-center p-3 bg-neutral-50 rounded-lg">
                   <div className="flex justify-center mb-1">
                     {getRoomTypeIcon(listing.room_type)}
@@ -91,34 +91,30 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
                     {getRoomTypeLabel(listing.room_type)}
                   </p>
                 </div>
-                <div className="text-center p-3 bg-neutral-50 rounded-lg">
-                  <div className="flex justify-center mb-1">
-                    <DollarSign className="w-6 h-6 text-green-600" />
-                  </div>
-                  <p className="text-sm font-medium text-neutral-900">
-                    ${listing.price_per_week}/sem
-                  </p>
-                </div>
-                <div className="text-center p-3 bg-neutral-50 rounded-lg">
-                  <div className="flex justify-center mb-1">
-                    {listing.bills_included ? (
-                      <CheckCircle className="w-6 h-6 text-green-600" />
-                    ) : (
-                      <XCircle className="w-6 h-6 text-red-600" />
-                    )}
-                  </div>
-                  <p className="text-sm font-medium text-neutral-900">
-                    {listing.bills_included ? 'Servicios incluidos' : 'Servicios no incluidos'}
-                  </p>
-                </div>
-                <div className="text-center p-3 bg-neutral-50 rounded-lg">
-                  <div className="flex justify-center mb-1">
-                    <Calendar className="w-6 h-6 text-primary-600" />
-                  </div>
-                  <p className="text-sm font-medium text-neutral-900">
-                    {listing.min_term_weeks} sem. mín.
-                  </p>
-                </div>
+                {listing.available_contract && (
+                  <>
+                    <div className="text-center p-3 bg-neutral-50 rounded-lg">
+                      <div className="flex justify-center mb-1">
+                        <DollarSign className="w-6 h-6 text-green-600" />
+                      </div>
+                      <p className="text-sm font-medium text-neutral-900">
+                        ${listing.available_contract.weekly_rent}/sem
+                      </p>
+                    </div>
+                    <div className="text-center p-3 bg-neutral-50 rounded-lg">
+                      <div className="flex justify-center mb-1">
+                        {listing.available_contract.bills_included ? (
+                          <CheckCircle className="w-6 h-6 text-green-600" />
+                        ) : (
+                          <XCircle className="w-6 h-6 text-red-600" />
+                        )}
+                      </div>
+                      <p className="text-sm font-medium text-neutral-900">
+                        {listing.available_contract.bills_included ? 'Servicios incluidos' : 'Servicios no incluidos'}
+                      </p>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 
@@ -181,19 +177,34 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
             {/* Price and Contact */}
             <div className="bg-white rounded-lg p-6 shadow-sm border border-neutral-200 sticky top-4">
               <div className="mb-6">
-                <div className="text-3xl font-bold text-neutral-900 mb-2">
-                  ${listing.price_per_week}
-                  <span className="text-lg font-normal text-neutral-500">/semana</span>
-                </div>
-                {listing.bond > 0 && (
-                  <p className="text-neutral-600">
-                    Depósito: ${listing.bond}
-                  </p>
-                )}
-                {listing.available_from && (
-                  <p className="text-sm text-neutral-500 mt-2">
-                    Disponible desde: {new Date(listing.available_from).toLocaleDateString('es-ES')}
-                  </p>
+                {listing.available_contract ? (
+                  <>
+                    <div className="text-3xl font-bold text-neutral-900 mb-2">
+                      ${listing.available_contract.weekly_rent}
+                      <span className="text-lg font-normal text-neutral-500">/semana</span>
+                    </div>
+                    {listing.available_contract.bond_amount > 0 && (
+                      <p className="text-neutral-600">
+                        Depósito: ${listing.available_contract.bond_amount}
+                      </p>
+                    )}
+                    <p className="text-sm text-neutral-500 mt-2">
+                      Disponible desde: {new Date(listing.available_contract.start_date).toLocaleDateString('es-ES')}
+                    </p>
+                    <p className="text-sm text-neutral-500">
+                      Hasta: {new Date(listing.available_contract.end_date).toLocaleDateString('es-ES')}
+                    </p>
+                    <div className="mt-3 pt-3 border-t border-neutral-200">
+                      <p className="text-xs text-neutral-500">
+                        Pago {listing.available_contract.payment_frequency === 'weekly' ? 'semanal' : 
+                             listing.available_contract.payment_frequency === 'fortnightly' ? 'quincenal' : 'mensual'}
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <div className="text-xl font-semibold text-neutral-600">
+                    Consultar disponibilidad y precio
+                  </div>
                 )}
               </div>
 

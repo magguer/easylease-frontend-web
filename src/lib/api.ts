@@ -4,9 +4,6 @@ export interface Listing {
   _id: string;
   title: string;
   slug: string;
-  price_per_week: number;
-  bond: number;
-  bills_included: boolean;
   address: string;
   suburb?: string;
   location?: {
@@ -15,13 +12,23 @@ export interface Listing {
   };
   room_type: "master" | "double" | "single";
   available_from?: string;
-  min_term_weeks: number;
   preferred_tenants: string[];
   house_features: string[];
   rules: string[];
   images: string[];
   owner_id?: string | { _id: string; name: string; email: string };
   locale: "es" | "en";
+  available_contract?: {
+    _id: string;
+    weekly_rent: number;
+    bond_amount: number;
+    payment_frequency: 'weekly' | 'fortnightly' | 'monthly';
+    bills_included: boolean;
+    start_date: string;
+    end_date: string;
+    terms?: string;
+    status: 'available';
+  };
   createdAt: string;
   updatedAt: string;
 }

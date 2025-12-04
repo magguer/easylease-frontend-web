@@ -67,30 +67,43 @@ export function ListingCard({ listing }: ListingCardProps) {
 
         {/* Price Section */}
         <div className="mb-4 pb-4 border-b border-neutral-100">
-          <div className="flex items-baseline gap-1">
-            <span className="text-3xl font-bold text-neutral-900">
-              ${listing.price_per_week}
-            </span>
-            <span className="text-sm font-medium text-neutral-500">/semana</span>
-          </div>
-          {listing.bond > 0 && (
-            <p className="text-xs text-neutral-500 mt-1">
-              Depósito: ${listing.bond}
-            </p>
+          {listing.available_contract ? (
+            <>
+              <div className="flex items-baseline gap-1">
+                <span className="text-3xl font-bold text-neutral-900">
+                  ${listing.available_contract.weekly_rent}
+                </span>
+                <span className="text-sm font-medium text-neutral-500">/semana</span>
+              </div>
+              {listing.available_contract.bond_amount > 0 && (
+                <p className="text-xs text-neutral-500 mt-1">
+                  Depósito: ${listing.available_contract.bond_amount}
+                </p>
+              )}
+            </>
+          ) : (
+            <div className="flex items-baseline gap-1">
+              <span className="text-lg font-semibold text-neutral-600">
+                Consultar precio
+              </span>
+            </div>
           )}
         </div>
         
         {/* Features Tags */}
         <div className="flex flex-wrap gap-2">
-          {listing.bills_included && (
+          {listing.available_contract?.bills_included && (
             <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-50 text-green-700 border border-green-200">
               <CheckCircle className="w-3 h-3 mr-1.5" />
               Servicios incluidos
             </span>
           )}
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-neutral-50 text-neutral-700 border border-neutral-200">
-            {listing.min_term_weeks} sem. mín.
-          </span>
+          {listing.available_contract && (
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-neutral-50 text-neutral-700 border border-neutral-200">
+              {listing.available_contract.payment_frequency === 'weekly' ? 'Pago semanal' : 
+               listing.available_contract.payment_frequency === 'fortnightly' ? 'Pago quincenal' : 'Pago mensual'}
+            </span>
+          )}
           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-50 text-primary-700 border border-primary-200">
             {getRoomTypeLabel(listing.room_type)}
           </span>
