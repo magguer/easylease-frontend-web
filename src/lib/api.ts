@@ -20,8 +20,7 @@ export interface Listing {
   house_features: string[];
   rules: string[];
   images: string[];
-  owner_partner_id?: string;
-  status: "draft" | "published" | "reserved" | "rented";
+  owner_id?: string | { _id: string; name: string; email: string };
   locale: "es" | "en";
   createdAt: string;
   updatedAt: string;
